@@ -1,2 +1,4 @@
-# shooter_game
-Unity shooter game scripting assignment
+# Unity Shooter game
+Unity shooter game scripting assignment.
+
+Team members: Cami Alarcon-Fernandez, Shania Clarke
