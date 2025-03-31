@@ -9,13 +9,15 @@ public class Player : MonoBehaviour
     //2. data type: int, float, bool, string
     //3. variable name: camelCase
     //4. value: optional
-
+    //Task 1 changes made by Shania Clarke
     private float playerSpeed;
     private float horizontalInput;
     private float verticalInput;
 
     private float horizontalScreenLimit = 9.5f;
-    private float verticalScreenLimit = 6.5f;
+    //added variables for vertical barrier
+    private float verticalScreenLimitTop = 0.7f;
+    private float verticalScreenLimitBottom = 3.5f;
 
     public GameObject bulletPrefab;
 
@@ -55,10 +57,14 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x * -1, transform.position.y, 0);
         }
-        //Player leaves the screen vertically
-        if(transform.position.y > verticalScreenLimit || transform.position.y <= -verticalScreenLimit)
+        //Keeps player from leaving the screen vertically
+        if (transform.position.y > verticalScreenLimitTop)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y * -1, 0);
+            transform.position = new Vector3(transform.position.x, verticalScreenLimitTop, 0);
+        }
+        else if (transform.position.y <= -verticalScreenLimitBottom)
+        {
+            transform.position = new Vector3(transform.position.x, -verticalScreenLimitBottom, 0);
         }
     }
 
