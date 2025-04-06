@@ -1,33 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
 
+    //Task 2 Edits done by Shania Clarke
+    public GameObject playerPrefab;
     public GameObject enemyOnePrefab;
-    public GameObject enemyTwoPrefab;
+    public GameObject cloudPrefab;
+    public GameObject coinPrefab;
+
+    public TextMeshProUGUI livesText;
+
+    public float horizontalScreenSize;
+    public float verticalScreenSize;
+
+    public int score;
+    //Task 2 Variable
+    public float waitTime = 8f;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("CreateEnemyOne", 1, 2);
-        InvokeRepeating("CreateEnemyTwo", 2, 3.5f);
+        horizontalScreenSize = 10f;
+        verticalScreenSize = 6.5f;
+        score = 0;
+        Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        CreateSky();
+        InvokeRepeating("CreateEnemy", 1, 3);
+        StartCoroutine(CreateCoins());
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        
+
     }
 
-    void CreateEnemyOne()
+    void CreateEnemy()
     {
-        Instantiate(enemyOnePrefab, new Vector3(Random.Range(-9f, 9f), 6.5f, 0), Quaternion.identity);
+        Instantiate(enemyOnePrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize) * 0.9f, verticalScreenSize, 0), Quaternion.Euler(180, 0, 0));
     }
 
-    void CreateEnemyTwo()
+    void CreateSky()
     {
-        Instantiate(enemyTwoPrefab, new Vector3(-9f, Random.Range(6f, 2), 0), Quaternion.identity);
+        for (int i = 0; i < 30; i++)
+        {
+            Instantiate(cloudPrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize), Random.Range(-verticalScreenSize, verticalScreenSize), 0), Quaternion.identity);
+        }
+        
+    }
+    public void AddScore(int earnedScore)
+    {
+        score = score + earnedScore;
+    }
+
+    public void ChangeLivesText (int currentLives)
+    {
+        livesText.text = "Lives: " + currentLives;
+    }
+
+    //Task 2 Function
+    private IEnumerator CreateCoins()
+    {
+        while (true)
+        {
+            GameObject coin = Instantiate(coinPrefab, new Vector3(Random.Range(-4, 5), Random.Range(-5, 5), 0), Quaternion.identity);
+            yield return new WaitForSeconds(waitTime);
+            Destroy(coin);
+            waitTime = 8f;
+        }
+        
     }
 }
