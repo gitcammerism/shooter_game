@@ -1,21 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< Updated upstream
-=======
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
->>>>>>> Stashed changes
 
 public class GameManager : MonoBehaviour
 {
 
-<<<<<<< Updated upstream
-    public GameObject enemyOnePrefab;
-    public GameObject enemyTwoPrefab;
-=======
     public GameObject playerPrefab;
     public GameObject enemyOnePrefab;
     public GameObject cloudPrefab;
@@ -38,15 +31,10 @@ public class GameManager : MonoBehaviour
     public int cloudMove;
 
     private bool gameOver;
->>>>>>> Stashed changes
 
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< Updated upstream
-        InvokeRepeating("CreateEnemyOne", 1, 2);
-        InvokeRepeating("CreateEnemyTwo", 2, 3.5f);
-=======
         horizontalScreenSize = 10f;
         verticalScreenSize = 6.5f;
         score = 0;
@@ -58,32 +46,22 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("CreateEnemy", 1, 3);
         StartCoroutine(SpawnPowerup());
         powerupText.text = "No powerups yet!";
->>>>>>> Stashed changes
     }
 
     // Update is called once per frame
     void Update()
     {
-<<<<<<< Updated upstream
-       
-=======
         if(gameOver && Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
->>>>>>> Stashed changes
     }
 
-    void CreateEnemyOne()
+    void CreateEnemy()
     {
-        Instantiate(enemyOnePrefab, new Vector3(Random.Range(-9f, 9f), 6.5f, 0), Quaternion.identity);
+        Instantiate(enemyOnePrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize) * 0.9f, verticalScreenSize, 0), Quaternion.Euler(180, 0, 0));
     }
 
-<<<<<<< Updated upstream
-    void CreateEnemyTwo()
-    {
-        Instantiate(enemyTwoPrefab, new Vector3(-9f, Random.Range(6f, 2), 0), Quaternion.identity);
-=======
     void CreatePowerup()
     {
         Instantiate(powerupPrefab, new Vector3(Random.Range(-horizontalScreenSize * 0.8f, horizontalScreenSize * 0.8f), Random.Range(-verticalScreenSize * 0.8f, verticalScreenSize * 0.8f), 0), Quaternion.identity);
@@ -159,7 +137,6 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         CancelInvoke();
         cloudMove = 0;
->>>>>>> Stashed changes
     }
 
 }
