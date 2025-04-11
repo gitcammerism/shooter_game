@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     public void LoseALife()
     {
+        //Task 1: Cami Alarcon-Fernandez
         //Do I have a shield? If yes: do not lose a life, but instead deactivate the shield's visibility
         //If not: lose a life
         //lives = lives - 1;
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
         gameManager.PlaySound(2);
     }
 
+    //Task 1 function
     IEnumerator ShieldPowerDown()
     {
         yield return new WaitForSeconds(7f);
@@ -113,6 +115,7 @@ public class PlayerController : MonoBehaviour
                     gameManager.ManagePowerupText(3);
                     break;
                 case 4:
+                    //Task 1
                     //Picked up shield
                     //Do I already have a shield?
                     //If yes: do nothing
