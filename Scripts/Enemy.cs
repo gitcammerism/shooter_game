@@ -16,6 +16,17 @@ public class Enemy : MonoBehaviour
         transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * 3f);
         if (transform.position.y < -6.5f)
         {
+<<<<<<< Updated upstream
+=======
+            whatDidIHit.GetComponent<PlayerController>().LoseALife();
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        } else if(whatDidIHit.tag == "Weapons")
+        {
+            Destroy(whatDidIHit.gameObject);
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            gameManager.AddScore(5);
+>>>>>>> Stashed changes
             Destroy(this.gameObject);
         }
     }
