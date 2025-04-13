@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     private float speed;
     private int weaponType;
 
+    //Task 2 done by Shania Clarke
+    private Coroutine shieldDown; //Task 2 - Coroutine declaration
+
     private GameManager gameManager;
 
     private float horizontalInput;
@@ -47,6 +50,8 @@ public class PlayerController : MonoBehaviour
         {
             shieldPrefab.SetActive(false);
             gameManager.ManagePowerupText(0);
+            StopCoroutine(shieldDown); //Task 2 - Ends shield Coroutine if broken
+            gameManager.PlaySound(2); //Task 2 - Plays power down audio
         }
         else
         {
@@ -123,7 +128,8 @@ public class PlayerController : MonoBehaviour
                     if (!shieldPrefab.activeInHierarchy)
                     {
                         shieldPrefab.SetActive(true);
-                        StartCoroutine(ShieldPowerDown());
+                        //Stores ShieldPowerDown() Coroutine
+                        shieldDown = StartCoroutine(ShieldPowerDown());
                     }
                     else {
                         break;
